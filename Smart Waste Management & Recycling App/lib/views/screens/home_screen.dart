@@ -4,6 +4,9 @@ import '../../viewmodels/auth_viewmodel.dart';
 import 'login_screen.dart';
 import 'waste_logging_screen.dart';
 import 'pickup_scheduling_screen.dart';
+import 'maps_screen.dart';
+import 'reward_screen.dart';
+import 'admin_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -67,6 +70,33 @@ class HomeScreen extends StatelessWidget {
                 minimumSize: Size(double.infinity, 50),
               ),
             ),
+            SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton.icon(
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => MapsScreen())),
+                    icon: Icon(Icons.map, color: Colors.green.shade700),
+                    label: Text("Recycling Centers"),
+                  )
+                ),
+                SizedBox(width: 16),
+                Expanded(
+                  child: OutlinedButton.icon(
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => RewardScreen())),
+                    icon: Icon(Icons.stars, color: Colors.amber),
+                    label: Text("Rewards"),
+                  )
+                )
+              ]
+            ),
+            SizedBox(height: 16),
+            if (user?.role == 'admin')
+               OutlinedButton.icon(
+                 onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => AdminScreen())),
+                 icon: Icon(Icons.admin_panel_settings, color: Colors.teal),
+                 label: Text("Admin Dashboard"),
+               ),
           ],
         ),
       ),
